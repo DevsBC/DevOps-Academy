@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "satoru-305501"
+  },
+  "targets": {
+    "satoru-305501": {
+      "hosting": {
+        "academy": [
+          "academia-devops"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.more-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+    flex-direction: column;
+}
+
+.inactive {
+    background-color: darkgray;
+}

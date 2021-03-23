@@ -1,0 +1,19 @@
+.sidenav-container {
+    height: 100%;
+}
+
+.spacer {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.active {
+    background-color: #7f4fa2;
+}
+
+.position-fixed {
+    position: sticky!important;
+    top: 0;
+    z-index: 2;
+}

@@ -1,0 +1,20 @@
+{
+    "hosting": [{
+        "target": "academy",
+        "public": "dist/devops-academy",
+        "ignore": [
+            "**/.*"
+        ],
+        "headers": [{
+            "source": "*.[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f].+(css|js)",
+            "headers": [{
+                "key": "Cache-Control",
+                "value": "no-cache, no-store, must-revalidate"
+            }]
+        }],
+        "rewrites": [{
+            "source": "**",
+            "destination": "/index.html"
+        }]
+    }]
+}

@@ -1,0 +1,104 @@
+<ng-container>
+    <app-header title="Horarios"></app-header>
+    <mat-accordion>
+        <mat-expansion-panel #expansion>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Agregar un nuevo horario
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-card class="parent">
+                <mat-form-field appearance="outline">
+                    <mat-icon matPrefix>view_week</mat-icon>
+                    <mat-label>Periodo</mat-label>
+                    <mat-select [(ngModel)]="schedule.period" [ngModelOptions]="{standalone: true}">
+                        <mat-option value="monday-friday">Lunes a Viernes</mat-option>
+                        <mat-option value="friday-sunday">Fin de semana</mat-option>
+                        <mat-option value="saturday">Sabados (intensivo)</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-icon matPrefix>schedule</mat-icon>
+                    <mat-label>Horario</mat-label>
+                    <mat-select [(ngModel)]="schedule.name" [ngModelOptions]="{standalone: true}">
+                        <mat-option value="morning" *ngIf="schedule.period !== 'saturday'">8:00 AM a 14:00 PM</mat-option>
+                        <mat-option value="evening" *ngIf="schedule.period !== 'saturday'">16:00 PM a 22:00 PM</mat-option>
+                        <mat-option value="intensive" *ngIf="schedule.period === 'saturday'">7:00 AM a 7:00 PM</mat-option>
+                    </mat-select>
+
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-checkbox class="example-margin" [checked]="allComplete" [indeterminate]="someComplete()" (change)="setAll($event.checked)">
+                        Seleccionar todos
+                    </mat-checkbox>
+                    <ul>
+                        <li *ngFor="let subtask of task.subtasks">
+                            <mat-checkbox [(ngModel)]="subtask.completed" (ngModelChange)="updateAllComplete()">
+                                {{subtask.name}}
+                            </mat-checkbox>
+                        </li>
+                    </ul>
+                    <textarea matInput disabled></textarea>
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="createSchedule(expansion)">Crear Horario</button>
+            </mat-card>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-grid-list cols="{{ ( cards | async )?.columns }}" [rowHeight]="( cards | async )!.card.rowHeight">
+        <mat-grid-tile [colspan]="( cards | async )!.card.cols" [rowspan]="( cards | async )!.card.rows" *ngFor="let item of schedules">
+            <mat-card style="width: 80%;" [class]="(item.status === 'INACTIVE') ? 'inactive' : ''">
+                <mat-card-header>
+                    <mat-card-title>
+                        {{ item.name | schedulename }}
+                    </mat-card-title>
+                    <mat-card-subtitle *ngIf="item.status === 'INACTIVE'">
+                        HORARIO DESACTIVADO
+                    </mat-card-subtitle>
+                    <button mat-button [matMenuTriggerFor]="scheduleMenu" class="more-button">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                    <mat-menu #scheduleMenu="matMenu">
+                        <button mat-menu-item (click)="deleteSchedule(item)">
+                          <mat-icon>delete</mat-icon>
+                          <span>Eliminar</span>
+                        </button>
+                        <button mat-menu-item (click)="toggleSchedule(item)">
+                          <mat-icon *ngIf="item.status === 'ACTIVE'">hide_source</mat-icon>
+                          <mat-icon  *ngIf="item.status === 'INACTIVE'">visibility</mat-icon>
+
+                          <span *ngIf="item.status === 'ACTIVE'">Desactivar</span>
+                          <span *ngIf="item.status === 'INACTIVE'">Activar</span>
+
+                        </button>
+                    </mat-menu>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-icon mat-list-icon>view_week</mat-icon>
+                            <h4 mat-line>{{ item.period | scheduleperiod }}</h4>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <mat-icon mat-list-icon>schedule</mat-icon>
+                            <h4 mat-line>Horario: {{ item.schedule }}</h4>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <mat-icon mat-list-icon>splitscreen</mat-icon>
+                            <h4 mat-line>Salones:
+                                <span *ngFor="let room of item.rooms">{{ room }} - </span></h4>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <mat-icon mat-list-icon>school</mat-icon>
+                            <h4 mat-line># Cursos: {{ item.counter }}</h4>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+
+
+    </mat-grid-list>
+</ng-container>

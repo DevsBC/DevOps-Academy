@@ -1,0 +1,86 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" fixedTopGap="0" fixedBottomGap="0" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar color="primary">
+            <span>Menu</span>
+        </mat-toolbar>
+        <mat-nav-list>
+            <h3 matSubheader>Principal</h3>
+            <mat-list-item routerLink="/cms/home" routerLinkActive="active" (click)="(drawer.mode === 'over') && drawer.toggle()">
+                <mat-icon mat-list-icon>space_dashboard</mat-icon>
+                <h4 mat-line>Tablero</h4>
+            </mat-list-item>
+
+            <h3 matSubheader>Contenido</h3>
+            <mat-list-item routerLink="/cms/schedules" routerLinkActive="active" (click)="(drawer.mode === 'over') && drawer.toggle()">
+                <mat-icon mat-list-icon>date_range</mat-icon>
+                <h4 mat-line>Horarios</h4>
+            </mat-list-item>
+            <mat-list-item routerLink="/cms/masters" routerLinkActive="active" (click)="(drawer.mode === 'over') && drawer.toggle()">
+                <mat-icon mat-list-icon>school</mat-icon>
+                <h4 mat-line>Docentes</h4>
+            </mat-list-item>
+            <mat-list-item routerLink="/cms/students" routerLinkActive="active" (click)="(drawer.mode === 'over') && drawer.toggle()">
+                <mat-icon mat-list-icon>account_box</mat-icon>
+                <h4 mat-line>Alumnos</h4>
+            </mat-list-item>
+
+            <h3 matSubheader>Control</h3>
+            <mat-list-item routerLink="/cms/employees" routerLinkActive="active" (click)="(drawer.mode === 'over') && drawer.toggle()">
+                <mat-icon mat-list-icon>supervisor_account</mat-icon>
+                <h4 mat-line>Empleados</h4>
+            </mat-list-item>
+            <mat-list-item routerLink="/cms/courses" routerLinkActive="active" (click)="(drawer.mode === 'over') && drawer.toggle()">
+                <mat-icon mat-list-icon>cast_for_education</mat-icon>
+                <h4 mat-line>Cursos</h4>
+            </mat-list-item>
+            <mat-list-item routerLink="/cms/resources" routerLinkActive="active" (click)="(drawer.mode === 'over') && drawer.toggle()">
+                <mat-icon mat-list-icon>stream</mat-icon>
+                <h4 mat-line>Recursos</h4>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar class="position-fixed" color="primary">
+            <mat-toolbar-row>
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+                  <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+              </button>
+                <span>Academia DevOps</span>
+                <span class="spacer"></span>
+
+                <button mat-icon-button (click)="dialogSignOut()">
+                 <mat-icon>exit_to_app</mat-icon>
+               </button>
+            </mat-toolbar-row>
+
+        </mat-toolbar>
+
+        <!--MAIN CONTENT-->
+        <router-outlet></router-outlet>
+
+        <mat-toolbar color="primary">
+            <span class='spacer'></span>
+            <h3>© Equipo DevOps 2021</h3>
+            <mat-divider></mat-divider>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                <mat-icon>code</mat-icon>
+                <span>Juan Carlos Aranda Alonso</span>
+              </button>
+                <button mat-menu-item>
+                <mat-icon>api</mat-icon>
+                <span>Jose Adolfo Chaparro Armenta</span>
+              </button>
+                <button mat-menu-item>
+                <mat-icon>developer_board</mat-icon>
+                <span>Carlos Eduardo Moreno Camacho</span>
+              </button>
+            </mat-menu>
+            <span class='spacer'></span>
+        </mat-toolbar>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

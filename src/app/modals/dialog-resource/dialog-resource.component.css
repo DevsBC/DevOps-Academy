@@ -1,0 +1,10 @@
+.parent {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+    flex-direction: column;
+}
+
+mat-button-toggle-group {
+    flex-wrap: wrap;
+}

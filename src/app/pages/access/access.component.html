@@ -1,0 +1,66 @@
+<div class="main-div animate__animated animate__fadeInDown">
+    <mat-card>
+        <mat-card-subtitle>
+            DevOps Academy - created with Angular | Node.js | Firebase
+        </mat-card-subtitle>
+        <mat-card-title class="text-center">
+            Platform Access
+        </mat-card-title>
+        <mat-card-content>
+            <mat-tab-group mat-align-tabs="start" mat-stretch-tabs>
+                <mat-tab label="Sign In">
+                    <h2 class="mat-h2 text-center p-2">Enter to my account</h2>
+                    <form class="parent" (ngSubmit)="onSubmitLogin(loginForm)" #loginForm="ngForm">
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input matInput type="email" name="email" [(ngModel)]="user.email" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="user.password" required>
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </mat-form-field>
+                        <button mat-flat-button color="primary" type="submit" style="width: 100%;" [disabled]="loading">Enter</button>
+                    </form>
+
+                </mat-tab>
+                <mat-tab label="Sign Up">
+                    <h2 class="mat-h2 text-center p-2">Create Account</h2>
+                    <form class="parent" (ngSubmit)="onSubmitRegister(registerForm)" #registerForm="ngForm">
+                        <mat-form-field>
+                            <mat-label>First Name</mat-label>
+                            <input matInput type="text" name="firstName" [(ngModel)]="user.firstName" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Last Name</mat-label>
+                            <input matInput type="text" name="lastName" [(ngModel)]="user.lastName" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input matInput type="email" name="email" [(ngModel)]="user.email" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Telephone</mat-label>
+                            <input matInput type="tel" name="telephone" [(ngModel)]="user.telephone" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Address</mat-label>
+                            <input matInput type="text" name="address" [(ngModel)]="user.address" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="user.password" required>
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </mat-form-field>
+                        <button mat-flat-button color="accent" style="width: 100%;" type="submit" [disabled]="loading">Create
+                        </button>
+                    </form>
+                </mat-tab>
+
+            </mat-tab-group>
+        </mat-card-content>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading" color="accent">
+
+        </mat-progress-bar>
+    </mat-card>
+</div>

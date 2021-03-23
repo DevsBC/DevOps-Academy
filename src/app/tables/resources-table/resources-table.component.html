@@ -1,0 +1,54 @@
+<!-- orders-table.component.html -->
+<ng-container>
+    <div class="header">
+        <button mat-raised-button color="primary" (click)="createResource()">Agregar recurso</button>
+
+        <mat-form-field>
+            <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Buscar">
+        </mat-form-field>
+    </div>
+
+    <div class="container mat-elevation-z8">
+
+        <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="resourceCode">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Codigo </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <span class="mobile-label">Codigo: </span> {{ row.resourceCode }}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+                <mat-cell *matCellDef="let row"> <span class="mobile-label">Nombre: </span> {{ row.name }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion </mat-header-cell>
+                <mat-cell *matCellDef="let row"> <span class="mobile-label">Descripcion: </span>{{ row.description }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="location">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Ubicacion </mat-header-cell>
+                <mat-cell *matCellDef="let row"> <span class="mobile-label">Ubicacion: </span>{{ row.location }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalUnits">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Totales</mat-header-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">Totales: </span> {{row.totalUnits }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="unitsAvailable">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Disponibles</mat-header-cell>
+                <mat-cell *matCellDef="let row"> <span class="mobile-label">Disponibles: </span>{{row.unitsAvailable }}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" pageSize="10"></mat-paginator>
+    </div>
+</ng-container>

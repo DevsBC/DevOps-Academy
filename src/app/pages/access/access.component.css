@@ -1,0 +1,17 @@
+.parent {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+    flex-direction: column;
+}
+
+mat-button-toggle-group {
+    flex-wrap: wrap;
+}
+
+.main-div {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
