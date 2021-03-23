@@ -16,13 +16,55 @@
 
 <mat-grid-list cols="{{ ( cards | async )?.columns }}" [rowHeight]="( cards | async )!.card.rowHeight">
     <mat-grid-tile [colspan]="( cards | async )!.card.cols" [rowspan]="( cards | async )!.card.rows" *ngFor="let course of courses">
-        <mat-card>
+        <mat-card [style]="( cards | async )!.card.width">
             <mat-card-header>
+                <div mat-card-avatar>
+                    <mat-icon>cast_for_education
+                    </mat-icon>
+                </div>
+
                 <mat-card-title>
                     {{course.category }}
                 </mat-card-title>
+                <mat-card-subtitle>
+                    {{ course.name }}
+                </mat-card-subtitle>
+                <span class="duration">
+                    <mat-icon style="padding-right: 30px;">schedule</mat-icon>
+
+                    {{ course.duration }} horas
+                </span>
             </mat-card-header>
-            {{ course.name }}
+            <mat-card-content>
+                <mat-list>
+                    <h4 class="wrapThatShit"> {{ course.description }}</h4>
+
+                    <mat-list-item>
+                        <h4 mat-line>Impartido por {{ course.master.firstName + ' ' + course.master.lastName }}</h4>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <h4 mat-line>Horario: {{ course.schedule.period | scheduleperiod }} de {{ course.schedule.schedule }}</h4>
+                    </mat-list-item>
+                </mat-list>
+                <div class="scrollable" *ngIf="course.requiredCourses">
+                    <h4>Curso(s) requeridos</h4>
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let required of course.requiredCourses">{{ required.name }}</mat-chip>
+                    </mat-chip-list>
+                </div>
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions align="end">
+                Capacidad para {{ course.studentCapacity }} personas
+                <div fxFlex></div>
+
+                <button mat-raised-button color="primary">JOIN</button>
+            </mat-card-actions>
+            <mat-card-footer>
+
+
+            </mat-card-footer>
         </mat-card>
+
     </mat-grid-tile>
 </mat-grid-list>

@@ -2,6 +2,9 @@
 </app-header>
 <mat-progress-bar mode="query" color="warn" *ngIf="loading">
 </mat-progress-bar>
+<mat-card *ngIf="!loading">
+    <app-courses-table [data]="courses"></app-courses-table>
+</mat-card>
 <form (ngSubmit)="onSubmit()" class="animate__animated animate__bounceIn" *ngIf="!loading">
     <mat-card class="shipping-card">
         <mat-card-header>

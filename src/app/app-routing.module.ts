@@ -8,6 +8,8 @@ import { EmployeesComponent } from './pages/employees/employees.component';
 import { SchedulesComponent } from './pages/schedules/schedules.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { ResourcesComponent } from './pages/resources/resources.component';
+import { MastersComponent } from './pages/masters/masters.component';
+import { StudentsComponent } from './pages/students/students.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'home', component: HomeComponent },
+      { path: 'masters', component: MastersComponent },
+      { path: 'students', component: StudentsComponent },
       { path: 'schedules', component: SchedulesComponent },
       { path: 'employees', component: EmployeesComponent },
       { path: 'courses', component: CoursesComponent },

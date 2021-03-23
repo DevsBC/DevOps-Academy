@@ -57,6 +57,9 @@ import { CoursesComponent } from './pages/courses/courses.component';
 import { ResourcesComponent } from './pages/resources/resources.component';
 import { ResourcesTableComponent } from './tables/resources-table/resources-table.component';
 import { DialogResourceComponent } from './modals/dialog-resource/dialog-resource.component';
+import { CoursesTableComponent } from './tables/courses-table/courses-table.component';
+import { StudentsComponent } from './pages/students/students.component';
+import { MastersComponent } from './pages/masters/masters.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +80,10 @@ import { DialogResourceComponent } from './modals/dialog-resource/dialog-resourc
     CoursesComponent,
     ResourcesComponent,
     ResourcesTableComponent,
-    DialogResourceComponent
+    DialogResourceComponent,
+    CoursesTableComponent,
+    StudentsComponent,
+    MastersComponent
   ],
   imports: [
     BrowserModule,

@@ -15,13 +15,13 @@ export class HomeComponent implements OnInit {
       if (matches) {
         return {
           columns: 1,
-          card: { cols: 1, rows: 1, rowHeight: "300px" },
+          card: { cols: 1, rows: 1, rowHeight: '500px', width: 'width: 300px;' },
         };
       }
 
       return {
-        columns: 4,
-        card: { cols: 1, rows: 2, rowHeight: "200px" },
+        columns: 2,
+        card: { cols: 1, rows: 2, rowHeight: '250px', width: 'width: 500px;' },
       };
     })
   );

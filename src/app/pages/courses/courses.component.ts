@@ -42,7 +42,7 @@ export class CoursesComponent implements OnInit {
   public async onSubmit() {
     this.course.code = 'CO' + Math.floor(100000 + Math.random() * 900000).toString();
     const requiredCourses = this.courses.filter((c: any) => c.selected);
-    this.course.requiredCourses = requiredCourses;
+    if (requiredCourses.length > 0) { this.course.requiredCourses = requiredCourses; }
     console.log(this.course);
     
     try {

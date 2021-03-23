@@ -1,0 +1,63 @@
+<!-- orders-table.component.html -->
+<ng-container>
+    <div class="header">
+        <mat-form-field>
+            <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Buscar">
+        </mat-form-field>
+    </div>
+
+    <div class="container mat-elevation-z8">
+
+        <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="code">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Codigo </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <span class="mobile-label">Codigo: </span> {{ row.code }}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+                <mat-cell *matCellDef="let row"> <span class="mobile-label">Nombre: </span> {{ row.name }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="lastName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Apellido </mat-header-cell>
+                <mat-cell *matCellDef="let row"> <span class="mobile-label">Apellido: </span>{{ row.lastName }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="category">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Categoria </mat-header-cell>
+                <mat-cell *matCellDef="let row"> <span class="mobile-label">Categoria: </span>{{ row.category }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="duration">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Duracion</mat-header-cell>
+                <mat-cell *matCellDef="let row"> <span class="mobile-label">Duracion: </span>{{row.duration }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="studentCapacity">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Capacidad</mat-header-cell>
+                <mat-cell *matCellDef=" let row "> <span class="mobile-label ">Capacidad: </span> {{row.studentCapacity }}</mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="master.firstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Maestro</mat-header-cell>
+                <mat-cell *matCellDef="let row "><span class="mobile-label ">Maestro: </span> {{row.master.firstName }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="schedule.name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Horario</mat-header-cell>
+                <mat-cell *matCellDef="let row "><span class="mobile-label ">Horario: </span> {{row.schedule.name | schedulename }}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns; ">
+            </mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100] " pageSize="10 "></mat-paginator>
+    </div>
+</ng-container>

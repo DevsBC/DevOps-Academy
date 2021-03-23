@@ -37,3 +37,22 @@
     top: 5px;
     right: 10px;
 }
+
+.duration {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.scrollable {
+    width: 100%;
+    height: 100px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.wrapThatShit {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}

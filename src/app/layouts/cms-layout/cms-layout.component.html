@@ -47,7 +47,9 @@
               </button>
                 <span>Academia DevOps</span>
                 <span class="spacer"></span>
-
+                <button mat-icon-button>
+                    <mat-icon>share</mat-icon>
+                  </button>
                 <button mat-icon-button (click)="dialogSignOut()">
                  <mat-icon>exit_to_app</mat-icon>
                </button>
@@ -59,6 +61,8 @@
         <router-outlet></router-outlet>
 
         <mat-toolbar color="primary">
+            <span fxHide.lt-md>Tecnologico Nacional de Mexico</span>
+
             <span class='spacer'></span>
             <h3>© Equipo DevOps 2021</h3>
             <mat-divider></mat-divider>
@@ -80,6 +84,7 @@
               </button>
             </mat-menu>
             <span class='spacer'></span>
+            <span fxHide.lt-md>Arquitectura Orientada a Servicios</span>
         </mat-toolbar>
 
     </mat-sidenav-content>
