@@ -1,1 +1,28 @@
-<p>home works!</p>
+<app-header title="Tablero"></app-header>
+<div class="hero-image">
+    <div class="hero-text">
+        <mat-icon style="transform: scale(2);">school</mat-icon>
+        <h1 class="mat-h1">Welcome to DevOps Academy</h1>
+        <p> Our courses will step you through the process of building a small application, or adding a new feature to an existing application. </p>
+    </div>
+</div>
+
+<div class="p-5">
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Search a course</mat-label>
+        <input matInput placeholder="Enter a keyword">
+    </mat-form-field>
+</div>
+
+<mat-grid-list cols="{{ ( cards | async )?.columns }}" [rowHeight]="( cards | async )!.card.rowHeight">
+    <mat-grid-tile [colspan]="( cards | async )!.card.cols" [rowspan]="( cards | async )!.card.rows" *ngFor="let course of courses">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    {{course.category }}
+                </mat-card-title>
+            </mat-card-header>
+            {{ course.name }}
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

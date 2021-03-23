@@ -61,4 +61,60 @@ export class DatabaseService {
     .snapshotChanges()
     .pipe(map((docs) => docs.map((a) => a.payload.doc.data())));
   }
+
+  public getMasters() {
+    const masters: any = [];
+    return this.database.collection('users').valueChanges()
+      .pipe(map((users: any) => {
+        users.forEach((user: any) => {
+          if (user.role) { if (user.role === 'master') { masters.push(user); }
+        }
+      });
+      return masters;
+    })).pipe(first()).toPromise();
+  }
+
+  public getActiveSchedules() {
+    const activeSchedules: any = [];
+    return this.database.collection('schedules').valueChanges()
+      .pipe(map((schedules: any) => {
+          schedules.map((schedule: any) => { 
+            if (schedule.status === 'ACTIVE') { activeSchedules.push(schedule); }
+          });
+        return activeSchedules;
+        }
+      ))
+      .pipe(first()).toPromise();
+  }
+
+  public getAllCourses() {
+    return this.database.collection('courses').valueChanges()
+    .pipe(map((courses: any) => {
+        return courses.map((course: any) => { 
+          return course;
+        });
+      }
+    ))
+    .pipe(first()).toPromise();
+  
+  }
+
+  public getAllResources() {
+    return this.database.collection('resources').valueChanges().pipe(first()).toPromise();
+  }
+
+  public setCourse(course: any) {
+    return this.database.collection('courses').doc(course.code).set(course);
+  }
+
+  public async updateUnitsAvailable(resources: any) {
+    const batch = this.db.firestore.batch();
+
+    for (const resource of resources) {
+      const ref = this.database.collection('resources').doc(resource.id).ref;
+      batch.update(ref, { unitsAvailable: resource.unitsAvailable });
+    }
+    return await batch.commit();
+  }
+
 }
