@@ -11,7 +11,7 @@
         <mat-table [dataSource]="dataSource" matSort>
 
             <ng-container matColumnDef="employeeCode">
-                <mat-header-cell *matHeaderCellDef mat-sort-header># Empleado </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef># Empleado </mat-header-cell>
                 <mat-cell *matCellDef="let row">
                     <span class="mobile-label"># Empleado: </span> {{ row.employeeCode }}
                 </mat-cell>
@@ -47,7 +47,7 @@
                 <mat-cell *matCellDef="let row"> <span class="mobile-label">Rol: </span> {{row.role | rolename }}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="actions">
+            <ng-container matColumnDef="actions" *ngIf="canEdit">
                 <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
                 <mat-cell *matCellDef="let row">
                     <button mat-flat-button color="accent" (click)="editEmployee(row)">
@@ -57,10 +57,10 @@
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple matRippleColor="accent" (click)="onClickEmployee(row)">
             </mat-row>
         </mat-table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" pageSize="10"></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="pageSize"></mat-paginator>
     </div>
 </ng-container>

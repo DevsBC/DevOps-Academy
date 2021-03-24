@@ -34,6 +34,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatRippleModule } from '@angular/material/core';
 import { AccessComponent } from './pages/access/access.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CmsLayoutComponent } from './layouts/cms-layout/cms-layout.component';
@@ -42,6 +43,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { RatingModule } from 'ng-starrating';
 import { environment } from '../environments/environment';
 import { DialogSignoutComponent } from './modals/dialog-signout/dialog-signout.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -119,12 +121,14 @@ import { MastersComponent } from './pages/masters/masters.component';
     MatProgressBarModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatRippleModule,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    RatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

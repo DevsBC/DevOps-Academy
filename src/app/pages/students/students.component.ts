@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatAccordion } from '@angular/material/expansion';
+import { DatabaseService } from '../../services/database.service';
 
 @Component({
   selector: 'app-students',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentsComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(MatAccordion) accordion: MatAccordion | undefined;
+  students: any;
+
+  constructor(private database: DatabaseService) { }
 
   ngOnInit(): void {
+    this.database.getStudents().then((students) => this.students = students);
   }
 
 }

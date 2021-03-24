@@ -1,1 +1,58 @@
 <app-header title="Estudiantes"></app-header>
+<div class="example-action-buttons">
+    <button mat-button (click)="accordion!.openAll()">Expandir todo</button>
+    <button mat-button (click)="accordion!.closeAll()">Colapsar todo</button>
+</div>
+<mat-accordion class="example-headers-align" multi *ngIf="students">
+    <mat-expansion-panel *ngFor="let item of students">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{ item.firstName + ' ' + item.lastName }}
+            </mat-panel-title>
+            <mat-panel-description>
+                <mat-icon>account_circle</mat-icon>
+                {{ item.employeeCode }}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-list>
+            <mat-list-item>
+                <mat-icon mat-list-icon>assignment_ind</mat-icon>
+                <p matLine>
+                    <span> {{ item.employeeCode }} </span>
+                </p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon>face</mat-icon>
+                <p matLine>
+                    <span> {{ item.firstName + ' ' + item.lastName }} </span>
+                </p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon>work</mat-icon>
+                <p matLine>
+                    <span> {{ item.job | jobname }}  </span>
+                </p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon>contact_mail</mat-icon>
+                <p matLine>
+                    <span> {{ item.email }}  </span>
+                </p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon>contact_phone</mat-icon>
+                <p matLine>
+                    <span> {{ item.telephone }}  </span>
+                </p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon>explore</mat-icon>
+                <p matLine>
+                    <span> {{ item.address }} </span>
+                </p>
+            </mat-list-item>
+        </mat-list>
+        <button mat-raised-button color="warn" style="float: right;">Descargar CV</button>
+    </mat-expansion-panel>
+</mat-accordion>

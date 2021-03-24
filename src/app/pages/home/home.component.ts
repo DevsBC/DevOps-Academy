@@ -27,10 +27,27 @@ export class HomeComponent implements OnInit {
   );
 
   courses: any;
+  copyCourses: any;
   constructor(private breakpointObserver: BreakpointObserver ,private database: DatabaseService) { }
 
   ngOnInit(): void {
-    this.database.getAllCourses().then((response: any) => this.courses = response);
+    this.database.getAllCourses().then((response: any) => {
+      this.courses = response;
+      this.copyCourses = response;
+    });
+  }
+
+  public search(event: any) {
+    const term = event.target.value;
+    if (term !== '') {
+      const text = term.toLowerCase();
+      this.courses = this.courses.filter((c: any) => c.name.toLowerCase().includes(text) 
+          || c.category.toLowerCase().includes(text)
+          || c.description.toLowerCase().includes(text));
+    } else {
+      this.courses = [...this.copyCourses];
+    }
+
   }
 
 }

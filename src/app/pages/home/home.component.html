@@ -10,7 +10,7 @@
 <div class="p-5">
     <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label>Search a course</mat-label>
-        <input matInput placeholder="Enter a keyword">
+        <input matInput placeholder="Enter a keyword" (keyup)="search($event)">
     </mat-form-field>
 </div>
 

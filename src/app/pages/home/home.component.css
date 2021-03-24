@@ -1,7 +1,7 @@
 .hero-image {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../../assets/banner.webp");
     height: 50%;
-    background-position: center;
+    background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;

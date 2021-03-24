@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, Input } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -19,7 +19,9 @@ export class EmployeesTableComponent implements AfterViewInit, OnInit {
   dataSource!: MatTableDataSource<any>;
   dataLength: number = 0;
   @Input() data: any;
-
+  @Input() pageSize = "10";
+  @Input() canEdit = true;
+  @Output() public selectEmployee = new EventEmitter<any>();
   displayedColumns = [
     'employeeCode',
     'firstName',
@@ -27,13 +29,16 @@ export class EmployeesTableComponent implements AfterViewInit, OnInit {
     'email',
     'telephone',
     'job',
-    'role',
-    'actions'
+    'role'
   ];
 
   constructor(private dialog: MatDialog) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.canEdit) {
+      this.displayedColumns.push('actions');
+    }
+  }
 
   ngAfterViewInit(): void {
     if (this.data) {
@@ -62,5 +67,9 @@ export class EmployeesTableComponent implements AfterViewInit, OnInit {
       }
     });
   } 
+
+  public onClickEmployee(employee: any) {
+    this.selectEmployee.emit(employee);
+  }
 
 }

@@ -74,6 +74,18 @@ export class DatabaseService {
     })).pipe(first()).toPromise();
   }
 
+  public getStudents() {
+    const masters: any = [];
+    return this.database.collection('users').valueChanges()
+      .pipe(map((users: any) => {
+        users.forEach((user: any) => {
+          if (user.role) { if (user.role === 'student') { masters.push(user); }
+        }
+      });
+      return masters;
+    })).pipe(first()).toPromise();
+  }
+
   public getActiveSchedules() {
     const activeSchedules: any = [];
     return this.database.collection('schedules').valueChanges()
