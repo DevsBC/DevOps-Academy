@@ -64,8 +64,15 @@ export class AuthenticationService {
   }
 
   public getSession() {
-    if (this.isAuthenticated()) {
-      return JSON.parse(sessionStorage.getItem(this.sessionName) || '');
+    return {
+      id:'uid',
+      job: 'employee',
+      employeeCode: Math.floor(100000 + Math.random() * 900000).toString(),
+      firstName: 'Juan Carlos',
+      lastName: 'Aranda Alonso',
+      email: 'juancarlos.aral@gmail.com',
+      telephone: '6567500055'
+
     }
   }
 

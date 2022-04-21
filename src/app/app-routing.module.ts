@@ -15,7 +15,6 @@ const routes: Routes = [
   {
     path: 'cms',
     component: CmsLayoutComponent,
-    canActivate: [AuthGuard],
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'masters', component: MastersComponent },
@@ -26,7 +25,6 @@ const routes: Routes = [
       { path: 'resources', component: ResourcesComponent }
     ]
   },
-  { path: 'access', component: AccessComponent },
   { path: '**', redirectTo: 'cms/home', pathMatch: 'full' },
   { path: '', redirectTo: 'cms/home', pathMatch: 'full' }
 ];
